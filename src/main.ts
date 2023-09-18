@@ -14,7 +14,7 @@ Devvit.addTrigger({
         console.log(event);
 
         console.log("Getting conversation...");
-        const modmailConvo = await context.reddit.modMail.getConversation({conversationId: event.conversationId});
+        const modmailConvo = await context.reddit.modMail.getConversation({conversationId: event.conversationId, markRead: false});
         console.log(modmailConvo);
     },
 });

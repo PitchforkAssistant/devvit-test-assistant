@@ -1,7 +1,6 @@
 import {ModMail} from "@devvit/protos";
 import {Devvit, OnTriggerEvent, TriggerContext} from "@devvit/public-api";
 
-// Enable any Devvit features you might need.
 Devvit.configure({
     redditAPI: true,
 });
@@ -18,4 +17,5 @@ Devvit.addTrigger({
         console.log(modmailConvo);
     },
 });
+
 export default Devvit;

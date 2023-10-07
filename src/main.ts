@@ -2,7 +2,7 @@ import {Devvit} from "@devvit/public-api";
 import {someRecurringTask} from "./handlers/jobs.js";
 import {validateDiceRoll} from "./handlers/validators.js";
 import {DEFAULTS, HELP_TEXTS, LABELS, OPTIONS} from "./constants.js";
-import {formActionPressed, formOnSubmit, menuActionPressed, menuLoggedOutPressed, menuMemberPressed, menuModActionPressed} from "./handlers/menus.js";
+import {formActionPressed, formOnSubmit, lookupButton, lookupOnSubmit, menuActionPressed, menuLoggedOutPressed, menuMemberPressed, menuModActionPressed, testButtonPressed, testFormSubmit} from "./handlers/menus.js";
 import {onAppChanged, onCommentCreate, onCommentDelete, onCommentReport, onCommentSubmit, onCommentUpdate, onModAction, onModMail, onPostCreate, onPostDelete, onPostFlairUpdate, onPostReport, onPostSubmit, onPostUpdate} from "./handlers/triggers.js";
 import {customPostType} from "./components/customPostType.js";
 
@@ -37,6 +37,43 @@ export const submitPostFormKey = Devvit.createForm(
         cancelLabel: LABELS.FORM_CANCEL,
     },
     formOnSubmit
+);
+
+export const testFormKey = Devvit.createForm(
+    {
+        fields: [
+            {
+                type: "string",
+                name: "targetName",
+                label: "Target Username",
+            },
+            {
+                type: "string",
+                name: "targetSub",
+                label: "Target Subreddit",
+            },
+        ],
+        title: "Lookup Removal Reasons",
+        acceptLabel: LABELS.FORM_FETCH,
+        cancelLabel: LABELS.FORM_CANCEL,
+    },
+    testFormSubmit
+);
+
+export const fetchDataFormKey = Devvit.createForm(
+    {
+        fields: [
+            {
+                type: "string",
+                name: "targetId",
+                label: "Target ID",
+            },
+        ],
+        title: "Lookup Perms",
+        acceptLabel: LABELS.FORM_FETCH,
+        cancelLabel: LABELS.FORM_CANCEL,
+    },
+    lookupOnSubmit
 );
 
 // Set up the configuration field presented to the user for each installation (subreddit) of the app.
@@ -118,6 +155,20 @@ Devvit.addMenuItem({
     label: LABELS.MEMBER_ACTION,
     forUserType: "member",
     onPress: menuMemberPressed,
+});
+
+Devvit.addMenuItem({
+    location: "subreddit",
+    forUserType: "moderator",
+    label: "Lookup Perms",
+    onPress: testButtonPressed,
+});
+
+Devvit.addMenuItem({
+    location: "subreddit",
+    forUserType: "moderator",
+    label: "Lookup ID",
+    onPress: lookupButton,
 });
 
 // Define scheduler jobs

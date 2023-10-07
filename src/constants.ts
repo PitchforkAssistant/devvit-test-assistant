@@ -15,9 +15,11 @@ export const LABELS = {
     GENERAL_POST_ACTION: "Template Action (Unspecified)",
     FORM: "Custom Post Form",
     FORM_ACCEPT: "Submit Custom Post",
+    FORM_FETCH: "Fetch",
     FORM_CANCEL: "Cancel",
     CUSTOM_POST_BUTTON: "Create a Custom Post",
     CUSTOM_POST_TITLE: "Title",
+    TEST: "Test",
 };
 
 export const HELP_TEXTS = {
@@ -33,6 +35,7 @@ export const HELP_TEXTS = {
     FORM: "This is an example of a form, it has a custom submit and cancel button. The fields are the same as the app settings, but that's just because I was too lazy to define two separate forms.",
     CUSTOM_POST_BUTTON: "This is a of a menu item that submits a custom post example.",
     CUSTOM_POST_TITLE: "This is used as the title of the custom post.",
+    TEST: "Testing stuff with this one.",
 };
 
 export const ERRORS = {

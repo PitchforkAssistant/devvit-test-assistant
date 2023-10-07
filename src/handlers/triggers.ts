@@ -3,8 +3,8 @@ import {
     PostSubmit, PostCreate, PostUpdate, PostDelete, PostReport, PostFlairUpdate,
     CommentSubmit, CommentCreate, CommentUpdate, CommentDelete, CommentReport,
 } from "@devvit/protos";
-import {TriggerContext, OnTriggerEvent} from "@devvit/public-api";
-import {onAnyTriggerConsoleLog, startSingletonJob} from "devvit-helpers";
+import {TriggerContext, OnTriggerEvent, TriggerEventType, TriggerEvent} from "@devvit/public-api";
+import {startSingletonJob} from "devvit-helpers";
 
 // Post Triggers
 
@@ -65,9 +65,9 @@ export async function onModAction (event: OnTriggerEvent<ModAction>, context: Tr
 
 // All triggers above are there as examples, they all call this function that takes any trigger event and just logs it.
 // I have found myself using this function a lot for figuring out how things work, so I've included it in devvit-helpers.
-// export async function onAnyTriggerConsoleLog (event: OnTriggerEvent<TriggerEventType[TriggerEvent]>, context: TriggerContext) {
-//     console.log(`type: ${event.type}\nevent:\n${JSON.stringify(event)}\ncontext:\n${JSON.stringify(context)}`);
-// }
+export async function onAnyTriggerConsoleLog (event: OnTriggerEvent<TriggerEventType[TriggerEvent]>, context: TriggerContext) {
+    console.log(`type: ${event.type}\nevent:\n${JSON.stringify(event)}\ncontext:\n${JSON.stringify(context)}`);
+}
 
 // App Meta Triggers
 

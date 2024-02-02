@@ -12,7 +12,7 @@ export class DevvitExtensions {
                     try {
                         await triggerDefinition.onEvent({...event, subType: triggerDefinition.event}, context);
                     } catch (e) {
-                        console.error(`Error in onEvent function for trigger${triggerDefinition.event}`);
+                        console.error(`Error in onEvent function for trigger ${triggerDefinition.event}`);
                         throw e;
                     }
                 }
@@ -21,3 +21,4 @@ export class DevvitExtensions {
         return Devvit;
     }
 }
+

@@ -7,7 +7,7 @@ export type StickyCommentReply = "StickyCommentReply";
 
 export type SubTriggerEvaluator<TriggerEvent> = (event: OnTriggerEvent<TriggerEvent>, context: TriggerContext) => Promise<boolean> | boolean;
 
-export async function isAppCommentReply (event: CommentCreate, context: TriggerContext): Promise<boolean> {
+export async function isAppCommentReply (event: OnTriggerEvent<CommentCreate>, context: TriggerContext): Promise<boolean> {
     if (!event.comment?.parentId || !isT1ID(event.comment.parentId)) {
         return false;
     }
@@ -20,7 +20,7 @@ export async function isAppCommentReply (event: CommentCreate, context: TriggerC
     return parentComment.authorId === context.appAccountId;
 }
 
-export async function isStickyCommentReply (event: CommentCreate, context: TriggerContext): Promise<boolean> {
+export async function isStickyCommentReply (event: OnTriggerEvent<CommentCreate>, context: TriggerContext): Promise<boolean> {
     if (!event.comment?.parentId || !isT1ID(event.comment.parentId)) {
         return false;
     }

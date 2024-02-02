@@ -1,7 +1,9 @@
 {
-    "extends": "@devvit/tsconfig/devvit.tsconfig.json",
+    "extends": "@devvit/public-api/devvit.tsconfig.json",
     "compilerOptions": {
         "resolveJsonModule": true,
-        "jsx": "react"
+        "jsx": "react",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext"
     }
 }

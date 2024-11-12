@@ -18,12 +18,21 @@ export {devvitAppSettings} from "./settings.js";
 
 // Forms
 export {createPostForm} from "./forms/createPostForm.js";
+export {resultForm} from "./forms/resultForm.js";
+export {createWikiForm} from "./forms/createWikiForm.js";
+export {fetchWikiForm} from "./forms/fetchWikiForm.js";
+export {fetchDomainForm} from "./forms/fetchDomainForm.js";
+export {fetchThingForm} from "./forms/fetchThingForm.js";
 
 // Buttons
 export {modButton} from "./buttons/modButton.js";
 export {loggedOutButton} from "./buttons/loggedOutButton.js";
 export {customPostButton} from "./buttons/customPostButton.js";
 export {generalButton} from "./buttons/generalButton.js";
+export {createWikiButton} from "./buttons/createWikiButton.js";
+export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
+export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
+export {fetchThingButton} from "./buttons/fetchThingButton.js";
 
 // Custom Post
 export {customPostExample} from "./customPost/index.js";
@@ -47,5 +56,9 @@ export {postFlairUpdateTrigger} from "./triggers/postFlairUpdate.js";
 export {postReportTrigger} from "./triggers/postReport.js";
 export {postSubmitTrigger} from "./triggers/postSubmit.js";
 export {postUpdateTrigger} from "./triggers/postUpdate.js";
+export {postSpoilerUpdateTrigger} from "./triggers/postSpoilerUpdate.js";
+export {postNsfwUpdateTrigger} from "./triggers/postNsfwUpdate.js";
+export {automodFilterCommentTrigger} from "./triggers/automodFilterComment.js";
+export {automodFilterPostTrigger} from "./triggers/automodFilterPost.js";
 
 export default Devvit;

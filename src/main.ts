@@ -23,6 +23,7 @@ export {createWikiForm} from "./forms/createWikiForm.js";
 export {fetchWikiForm} from "./forms/fetchWikiForm.js";
 export {fetchDomainForm} from "./forms/fetchDomainForm.js";
 export {fetchThingForm} from "./forms/fetchThingForm.js";
+export {uploadImageForm} from "./forms/uploadImageForm.js";
 
 // Buttons
 export {modButton} from "./buttons/modButton.js";
@@ -33,6 +34,7 @@ export {createWikiButton} from "./buttons/createWikiButton.js";
 export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
 export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
 export {fetchThingButton} from "./buttons/fetchThingButton.js";
+export {uploadImageButton} from "./buttons/uploadImageButton.js";
 
 // Custom Post
 export {customPostExample} from "./customPost/index.js";

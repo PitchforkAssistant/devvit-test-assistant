@@ -1,6 +1,7 @@
 import {Comment, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler, Post, SubredditInfo, User} from "@devvit/public-api";
 
 import {resultForm} from "../main.js";
+import {getRawCommentData, getRawPostData, getRawSubredditData, getRawUserData} from "../utils/rawData.js";
 
 const form: Form = {
     fields: [
@@ -56,24 +57,29 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
     }
 
     let result: Comment | User | Post | SubredditInfo | undefined = undefined;
+    let additionalData: unknown = undefined;
     let resultString = "";
     try {
         switch (thingType) {
         case "t1":
             context.ui.showToast(`Fetching comment ${thingId}`);
             result = await context.reddit.getCommentById(thingId);
+            additionalData = await getRawCommentData([result.id ?? thingId], context.debug.metadata);
             break;
         case "t2":
             context.ui.showToast(`Fetching user ${thingId}`);
             result = await context.reddit.getUserById(thingId);
+            additionalData = await getRawUserData(result?.username ?? thingId, context.debug.metadata);
             break;
         case "t3":
             context.ui.showToast(`Fetching post ${thingId}`);
             result = await context.reddit.getPostById(thingId);
+            additionalData = await getRawPostData([result.id ?? thingId], context.debug.metadata);
             break;
         case "t5":
             context.ui.showToast(`Fetching subreddit ${thingId}`);
             result = await context.reddit.getSubredditInfoById(thingId);
+            additionalData = await getRawSubredditData(result?.name ?? thingId, context.debug.metadata);
             break;
         default:
             context.ui.showToast(`ERROR: Invalid thing type ${thingType}`);
@@ -98,19 +104,33 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
                 name: "thing",
                 label: thingId,
                 defaultValue: resultString,
-                helpText: `Data returned by Devvit for ${thingId}.`,
+                lineHeight: 10,
+                // helpText: `Data returned by Devvit for ${thingId}.`,
                 disabled: true,
             },
             {
                 type: "paragraph",
                 name: "thingKeys",
-                label: "Keys",
-                helpText: "These are the properties contained in the fetched object, these may include the names of functions and other non-JSON serializable data.",
+                label: "Object.getOwnPropertyNames",
+                // helpText: "These are the properties contained in the fetched object, these may include the names of functions and other non-JSON serializable data.",
                 defaultValue: Object.getOwnPropertyNames(Object.getPrototypeOf(result)).join(", "), // Just Object.keys() doesn't return class methods
+                lineHeight: 5,
+                disabled: true,
+            },
+            {
+                type: "paragraph",
+                name: "additionalData",
+                label: "Additional Data",
+                // helpText: "This field contains the results from an attempt to fetch additional data that isn't included in the default Devvit object.",
+                defaultValue: JSON.stringify(additionalData, null, 3), // Just Object.keys() doesn't return class methods
+                lineHeight: 10,
                 disabled: true,
             },
         ],
     });
+
+    console.dir(result);
+    console.trace(result);
 };
 
 export const fetchThingForm: FormKey = Devvit.createForm(form, formHandler);

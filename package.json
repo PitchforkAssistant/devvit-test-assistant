@@ -13,10 +13,11 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "@devvit/protos": "0.11.3",
-    "@devvit/public-api": "0.11.3",
-    "@devvit/shared-types": "0.11.3",
-    "devvit-helpers": "0.6.0",
+    "@devvit/protos": "0.11.6",
+    "@devvit/public-api": "0.11.6",
+    "@devvit/shared-types": "0.11.6",
+    "devvit-helpers": "0.6.3",
+    "lodash": "^4.17.21",
     "toolbox-devvit": "0.3.2"
   },
   "devDependencies": {
@@ -24,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^8.17.0",
     "@typescript-eslint/parser": "^8.17.0",
     "eslint": "^9.16.0",
+    "eslint-plugin-perfectionist": "^4.8.0",
     "eslint-plugin-vitest": "^0.5.4",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"

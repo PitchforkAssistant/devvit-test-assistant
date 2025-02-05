@@ -7,6 +7,10 @@ import {onAnyTriggerConsoleLog} from "devvit-helpers";
  */
 
 export async function onPostReport (event: PostReport, context: TriggerContext) {
+    if (event.post?.id) {
+        const post = await context.reddit.getPostById(event.post?.id);
+        console.log(post);
+    }
     return onAnyTriggerConsoleLog(event, context);
 }
 

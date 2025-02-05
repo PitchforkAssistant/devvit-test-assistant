@@ -18,22 +18,23 @@ export {devvitAppSettings} from "./settings.js";
 
 // Forms
 export {createPostForm} from "./forms/createPostForm.js";
-export {resultForm} from "./forms/resultForm.js";
 export {createWikiForm} from "./forms/createWikiForm.js";
-export {fetchWikiForm} from "./forms/fetchWikiForm.js";
 export {fetchDomainForm} from "./forms/fetchDomainForm.js";
 export {fetchThingForm} from "./forms/fetchThingForm.js";
+export {fetchWikiForm} from "./forms/fetchWikiForm.js";
+export {resultForm} from "./forms/resultForm.js";
 export {uploadImageForm} from "./forms/uploadImageForm.js";
 
 // Buttons
-export {modButton} from "./buttons/modButton.js";
-export {loggedOutButton} from "./buttons/loggedOutButton.js";
-export {customPostButton} from "./buttons/customPostButton.js";
-export {generalButton} from "./buttons/generalButton.js";
+export {checkLocaleButton} from "./buttons/checkLocaleButton.js";
 export {createWikiButton} from "./buttons/createWikiButton.js";
-export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
+export {customPostButton} from "./buttons/customPostButton.js";
 export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
 export {fetchThingButton} from "./buttons/fetchThingButton.js";
+export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
+export {generalButton} from "./buttons/generalButton.js";
+export {loggedOutButton} from "./buttons/loggedOutButton.js";
+export {modButton} from "./buttons/modButton.js";
 export {uploadImageButton} from "./buttons/uploadImageButton.js";
 
 // Custom Post
@@ -45,6 +46,8 @@ export {someRecurringTask} from "./scheduler/someRecurringTask.js";
 // Triggers
 export {appInstallTrigger} from "./triggers/appInstall.js";
 export {appUpgradeTrigger} from "./triggers/appUpgrade.js";
+export {automodFilterCommentTrigger} from "./triggers/automodFilterComment.js";
+export {automodFilterPostTrigger} from "./triggers/automodFilterPost.js";
 export {commentCreateTrigger} from "./triggers/commentCreate.js";
 export {commentDeleteTrigger} from "./triggers/commentDelete.js";
 export {commentReportTrigger} from "./triggers/commentReport.js";
@@ -55,12 +58,10 @@ export {modMailTrigger} from "./triggers/modMail.js";
 export {postCreateTrigger} from "./triggers/postCreate.js";
 export {postDeleteTrigger} from "./triggers/postDelete.js";
 export {postFlairUpdateTrigger} from "./triggers/postFlairUpdate.js";
+export {postNsfwUpdateTrigger} from "./triggers/postNsfwUpdate.js";
 export {postReportTrigger} from "./triggers/postReport.js";
+export {postSpoilerUpdateTrigger} from "./triggers/postSpoilerUpdate.js";
 export {postSubmitTrigger} from "./triggers/postSubmit.js";
 export {postUpdateTrigger} from "./triggers/postUpdate.js";
-export {postSpoilerUpdateTrigger} from "./triggers/postSpoilerUpdate.js";
-export {postNsfwUpdateTrigger} from "./triggers/postNsfwUpdate.js";
-export {automodFilterCommentTrigger} from "./triggers/automodFilterComment.js";
-export {automodFilterPostTrigger} from "./triggers/automodFilterPost.js";
 
 export default Devvit;

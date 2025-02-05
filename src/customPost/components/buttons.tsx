@@ -1,4 +1,5 @@
 import {Devvit} from "@devvit/public-api";
+
 import {CustomPostState} from "../state.js";
 
 export const ButtonsPage = (state: CustomPostState) => {
@@ -13,16 +14,16 @@ export const ButtonsPage = (state: CustomPostState) => {
 
         <vstack alignment="center middle" gap="large" grow>
             <hstack padding="medium">
-                <text style="heading" size="xxlarge">
+                <text size="xxlarge" style="heading">
                     Hello, {state.username ?? "stranger"}!
                 </text>
-                <avatar size="large" thingId={state.userId ?? "t2_1qwk"} facing="left"/>
+                <avatar facing="left" size="large" thingId={state.userId ?? "t2_1qwk"}/>
             </hstack>
 
             <vstack gap="medium">
                 <text size="large" style="body">{`Click counter: ${state.counter}`}</text>
-                <vstack gap="medium" border="thin" padding="medium" cornerRadius="medium" grow>
-                    <hstack gap="medium" alignment="center middle">
+                <vstack border="thin" cornerRadius="medium" gap="medium" grow padding="medium">
+                    <hstack alignment="center middle" gap="medium">
                         <button appearance="primary" grow onPress={clickCounter}>
                             Button
                         </button>
@@ -31,7 +32,7 @@ export const ButtonsPage = (state: CustomPostState) => {
                         </button>
                     </hstack>
 
-                    <hstack gap="medium" alignment="center middle">
+                    <hstack alignment="center middle" gap="medium">
                         <button appearance="bordered" grow onPress={clickCounter}>
                             Button
                         </button>
@@ -40,7 +41,7 @@ export const ButtonsPage = (state: CustomPostState) => {
                         </button>
                     </hstack>
 
-                    <hstack gap="medium" alignment="center middle">
+                    <hstack alignment="center middle" gap="medium">
                         <button appearance="media" grow onPress={clickCounter}>
                             Button
                         </button>
@@ -49,7 +50,7 @@ export const ButtonsPage = (state: CustomPostState) => {
                         </button>
                     </hstack>
 
-                    <hstack gap="medium" alignment="center middle">
+                    <hstack alignment="center middle" gap="medium">
                         <button appearance="success" grow onPress={clickCounter}>
                             Button
                         </button>
@@ -58,7 +59,7 @@ export const ButtonsPage = (state: CustomPostState) => {
                         </button>
                     </hstack>
                 </vstack>
-                <text style="metadata" size="small" alignment="center middle">
+                <text alignment="center middle" size="small" style="metadata">
                 Click a button, you know you want to do it!
                 </text>
             </vstack>

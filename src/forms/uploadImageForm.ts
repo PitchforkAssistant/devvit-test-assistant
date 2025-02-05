@@ -1,4 +1,5 @@
 import {Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler} from "@devvit/public-api";
+
 import {resultForm} from "../main.js";
 
 const form: Form = {

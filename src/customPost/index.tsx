@@ -1,6 +1,7 @@
 import {Devvit} from "@devvit/public-api";
-import {CustomPostState} from "./state.js";
+
 import {Page} from "./pages.js";
+import {CustomPostState} from "./state.js";
 
 export const customPostExample = Devvit.addCustomPostType({
     name: "Custom Post Example",
@@ -10,13 +11,13 @@ export const customPostExample = Devvit.addCustomPostType({
         const state = new CustomPostState(context);
         return (
             <blocks>
-                <vstack alignment="center top" width="100%" height="100%">
-                    <hstack alignment="center middle" minWidth="100%" padding="small" border="thick">
-                        <button icon="home" appearance="plain" disabled={state.currentPage === "home"} onPress={() => state.changePage("home")}>Home</button>
+                <vstack alignment="center top" height="100%" width="100%">
+                    <hstack alignment="center middle" border="thick" minWidth="100%" padding="small">
+                        <button appearance="plain" disabled={state.currentPage === "home"} icon="home" onPress={() => state.changePage("home")}>Home</button>
                         <vstack alignment="center middle" grow>
                             <text style="heading">Custom Post Example</text>
                         </vstack>
-                        <button icon="help" appearance="plain" disabled={state.currentPage === "help"} onPress={() => state.changePage("help")}>Help</button>
+                        <button appearance="plain" disabled={state.currentPage === "help"} icon="help" onPress={() => state.changePage("help")}>Help</button>
                     </hstack>
                     <vstack alignment="center middle" grow width="100%">
                         <Page state={state} />

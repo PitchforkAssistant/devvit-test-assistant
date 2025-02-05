@@ -1,5 +1,6 @@
 import {Devvit} from "@devvit/public-api";
-import {LABELS, HELP_TEXTS, DEFAULTS, OPTIONS} from "./constants.js";
+
+import {DEFAULTS, HELP_TEXTS, LABELS, OPTIONS} from "./constants.js";
 import {validateDiceRoll} from "./validators/validateDiceRoll.js";
 
 // Set up the configuration field presented to the user for each installation (subreddit) of the app.

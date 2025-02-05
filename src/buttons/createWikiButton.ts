@@ -1,4 +1,5 @@
 import {Context, Devvit, MenuItemOnPressEvent} from "@devvit/public-api";
+
 import {createWikiForm} from "../main.js";
 
 export async function createWikiButtonPressed (event: MenuItemOnPressEvent, context: Context) {

@@ -37,10 +37,10 @@ export class WikiPath {
     /**
      * The current wiki path after pre-processing and validation.
      */
-    readonly path: string;
-
-    private _tree?: string[];
     private _parents?: string[];
+    private _tree?: string[];
+
+    readonly path: string;
 
     /**
      * Ordered array of each page in the path (e.g. ["first", "first/second", "first/second/third"] for "first/second/third").
@@ -60,7 +60,6 @@ export class WikiPath {
         }
         return this._tree;
     }
-
     /**
      * Ordered array of the parent paths of the path (e.g. ["first", "first/second"] for "first/second/third").
      */
@@ -70,28 +69,24 @@ export class WikiPath {
         }
         return this._parents;
     }
-
     /**
      * Gets the immediate parent of the path (e.g. "second" in "first/second/third"). Undefined if this is the root of the tree.
      */
     get parent (): string | undefined {
         return this.parents[this.parents.length - 1];
     }
-
     /**
      * Returns true if the path has no parents (e.g. "first" in "first/second" has no parents, but "first/second" does).
      */
     get isTreeRoot (): boolean {
         return this.tree.length === 1;
     }
-
     /**
      * The root of the tree is the first segment of the path (e.g. "first" in "first/second/third").
      */
     get treeRoot (): string {
         return this.tree[0];
     }
-
     /**
      * Returns true if the path points to a potentially dangerous page (e.g. "config/*", "tbsettings", or some other known config pages).
      */
@@ -136,7 +131,6 @@ export class WikiPath {
         }
         return wikiPath;
     }
-
     /**
      * This function checks if a wiki path is valid. Consider using preProcessWikiPath before calling this function.
      * @param wikiPath Wiki path to check

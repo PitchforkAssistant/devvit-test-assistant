@@ -1,4 +1,5 @@
 import {Devvit} from "@devvit/public-api";
+
 import {CustomPostState} from "../state.js";
 
 export const HomePage = (state: CustomPostState) => (

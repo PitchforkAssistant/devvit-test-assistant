@@ -1,6 +1,7 @@
 import {Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler} from "@devvit/public-api";
-import {getWikiPath} from "../utils/wikiPath.js";
+
 import {resultForm} from "../main.js";
+import {getWikiPath} from "../utils/wikiPath.js";
 
 const form: Form = {
     fields: [

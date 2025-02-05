@@ -1,4 +1,5 @@
 import {Context, Devvit, MenuItemOnPressEvent} from "@devvit/public-api";
+
 import {LABELS} from "../constants.js";
 import {createPostForm} from "../main.js";
 

@@ -1,4 +1,5 @@
 import {Context, Devvit, MenuItemOnPressEvent} from "@devvit/public-api";
+
 import {resultForm} from "../main.js";
 
 export async function localeButtonPressed (event: MenuItemOnPressEvent, context: Context) {

@@ -1,4 +1,5 @@
 import {Comment, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler, Post, SubredditInfo, User} from "@devvit/public-api";
+
 import {resultForm} from "../main.js";
 
 const form: Form = {
@@ -32,7 +33,7 @@ const form: Form = {
 
 export type FetchThingFormSubmitData = {
     thingId?: string;
-    thingType?: "" | "t1" | "t2" | "t3" | "t5";
+    thingType?: ["" | "t1" | "t2" | "t3" | "t5"];
 }
 
 const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (event: FormOnSubmitEvent<FetchThingFormSubmitData>, context: Context) => {
@@ -42,7 +43,7 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
         return;
     }
 
-    let thingType = event.values.thingType?.trim();
+    let thingType = event.values.thingType?.[0].trim();
     if (!thingId.startsWith("t1_") && !thingId.startsWith("t2_") && !thingId.startsWith("t3_") && !thingId.startsWith("t5_")) {
         if (!thingType) {
             context.ui.showToast({text: "ERROR: You must select the content type!", appearance: "neutral"});

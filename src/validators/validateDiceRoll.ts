@@ -1,4 +1,5 @@
 import {SettingsFormFieldValidatorEvent} from "@devvit/public-api";
+
 import {ERRORS} from "../constants.js";
 
 export async function validateDiceRoll (event: SettingsFormFieldValidatorEvent<number>) {

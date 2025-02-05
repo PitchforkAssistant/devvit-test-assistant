@@ -1,4 +1,5 @@
 import {Context, UseIntervalResult, UseStateResult} from "@devvit/public-api";
+
 import {PageName} from "./pages.js";
 
 export type SubredditData = {
@@ -12,12 +13,10 @@ export type UserData = {
 };
 
 export class CustomPostState {
+    readonly _counter: UseStateResult<number>;
     readonly _currentPage: UseStateResult<PageName>;
-
     readonly _currentSubData: UseStateResult<SubredditData>;
     readonly _currentUserData: UseStateResult<UserData>;
-
-    readonly _counter: UseStateResult<number>;
     readonly counterUpdater: UseIntervalResult;
 
     constructor (public context: Context, startPage: PageName = "home") {
@@ -49,28 +48,29 @@ export class CustomPostState {
         }, 1000);
     }
 
+    get counter (): number {
+        return this._counter[0];
+    }
+    set counter (value: number) {
+        this._counter[1](value);
+    }
     get currentPage (): PageName {
         return this._currentPage[0];
     }
-
     protected set currentPage (page: PageName) {
         this._currentPage[1](page);
     }
-
-    get subredditName (): string {
-        return this._currentSubData[0].name;
-    }
-
     get subredditId (): string {
         return this._currentSubData[0].id;
     }
-
-    get username (): string {
-        return this._currentUserData[0].username;
+    get subredditName (): string {
+        return this._currentSubData[0].name;
     }
-
     get userId (): string {
         return this._currentUserData[0].id;
+    }
+    get username (): string {
+        return this._currentUserData[0].username;
     }
 
     public changePage (page: PageName) {
@@ -87,20 +87,6 @@ export class CustomPostState {
 
         this.currentPage = page;
     }
-
-    get counter (): number {
-        return this._counter[0];
-    }
-
-    set counter (value: number) {
-        this._counter[1](value);
-    }
-
-    public async refreshCounter () {
-        const counterNumber = parseInt(await this.context.redis.get("counter") ?? "0");
-        this.counter = counterNumber ? counterNumber : 0; // Convert potential NaN from parseInt("") to 0
-    }
-
     public async incrementCounter (increment: number = 1): Promise<boolean> {
         const tx = await this.context.redis.watch("counter");
 
@@ -121,5 +107,9 @@ export class CustomPostState {
         }
         this.counter = newCounter;
         return true;
+    }
+    public async refreshCounter () {
+        const counterNumber = parseInt(await this.context.redis.get("counter") ?? "0");
+        this.counter = counterNumber ? counterNumber : 0; // Convert potential NaN from parseInt("") to 0
     }
 }

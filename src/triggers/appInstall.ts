@@ -1,6 +1,7 @@
 import {AppInstall} from "@devvit/protos";
 import {Devvit, TriggerContext} from "@devvit/public-api";
 import {onAnyTriggerConsoleLog} from "devvit-helpers";
+
 import {onAppChanged} from "./appChanged.js";
 
 /**

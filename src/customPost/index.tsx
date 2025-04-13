@@ -6,11 +6,10 @@ import {CustomPostState} from "./state.js";
 export const customPostExample = Devvit.addCustomPostType({
     name: "Custom Post Example",
     description: "An example of a custom post.",
-    height: "tall",
     render: context => {
         const state = new CustomPostState(context);
         return (
-            <blocks>
+            <blocks height="tall">
                 <vstack alignment="center top" height="100%" width="100%">
                     <hstack alignment="center middle" border="thick" minWidth="100%" padding="small">
                         <button appearance="plain" disabled={state.currentPage === "home"} icon="home" onPress={() => state.changePage("home")}>Home</button>

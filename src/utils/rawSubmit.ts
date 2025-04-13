@@ -9,7 +9,9 @@ import {fromByteArray} from "base64-js";
 
 import {getExtendedDevvit} from "../utils/rawData.js";
 
-export async function rawSubmit (options: SubmitPostOptions, metadata: Metadata | undefined): Promise<string> {
+export type RawSubmitPostOptions = SubmitPostOptions & {crosspostFullname?: string} & {kind?: "crosspost" | "image" | "video" | "videogif" | "link" | "custom" | "self"};
+
+export async function rawSubmit (options: RawSubmitPostOptions, metadata: Metadata | undefined): Promise<string> {
     const {runAs = "APP"} = options;
     const runAsType = RunAs[runAs];
     const client =
@@ -41,11 +43,12 @@ export async function rawSubmit (options: SubmitPostOptions, metadata: Metadata 
         const richtextFallback = textFallback ? getCustomPostRichTextFallback(textFallback) : "";
 
         const submitRequest: SubmitRequest = {
-            kind: "custom",
             sr: options.subredditName,
             richtextJson: fromByteArray(encodedCached),
             richtextFallback,
+            crosspostFullname: options.crosspostFullname,
             ...sanitizedOptions,
+            kind: "custom",
             runAs: runAsType,
         };
 
@@ -53,10 +56,11 @@ export async function rawSubmit (options: SubmitPostOptions, metadata: Metadata 
     } else {
         response = await client.Submit(
             {
-                kind: "kind" in options ? options.kind : "url" in options ? "link" : "self",
                 sr: options.subredditName,
                 richtextJson: "richtext" in options ? richtextToString(options.richtext) : undefined,
                 ...options,
+                crosspostFullname: options.crosspostFullname,
+                kind: "kind" in options && options.kind !== undefined ? options.kind : "url" in options ? "link" : "self",
                 runAs: runAsType,
             },
             metadata
@@ -65,7 +69,7 @@ export async function rawSubmit (options: SubmitPostOptions, metadata: Metadata 
 
     // Post Id might not be present as image/video post creation can happen asynchronously
     const isAllowedMediaType =
-      "kind" in options && ["image", "video", "videogif"].includes(options.kind);
+      "kind" in options && options.kind !== undefined && ["image", "video", "videogif"].includes(options.kind);
     if (isAllowedMediaType && !response.json?.data?.id) {
         if (options.kind === "image" && "imageUrls" in options) {
             throw new Error(`Image post type with ${String(options.imageUrls)} is being created asynchronously and should be updated in the subreddit soon.`);

@@ -1,8 +1,9 @@
 import {CommonSubmitPostOptions, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler, SubmitPostOptions} from "@devvit/public-api";
+import {isLinkId} from "@devvit/shared-types/tid.js";
 
-import {rawSubmit} from "../utils/rawSubmit.js";
+import {rawSubmit, RawSubmitPostOptions} from "../utils/rawSubmit.js";
 
-export type PostType = "text" | "richtext" | "link" | "media";
+export type PostType = "text" | "richtext" | "link" | "media" | "crosspost";
 export type MediaPostKind = "image" | "video" | "videogif";
 
 const form: Form = {
@@ -17,10 +18,10 @@ const form: Form = {
                 {label: "Rich Text", value: "richtext"},
                 {label: "Link", value: "link"},
                 {label: "Media", value: "media"},
+                {label: "Crosspost", value: "crosspost"},
             ],
             defaultValue: ["text"],
         },
-
         {
             type: "select",
             name: "runAs",
@@ -137,6 +138,25 @@ const form: Form = {
                 },
             ],
         },
+        {
+            type: "group",
+            label: "Crosspost Option",
+            helpText: "This option only applies to crossposts.",
+            fields: [
+                {
+                    type: "string",
+                    name: "crosspostFullname",
+                    label: "Crosspost ID",
+                    helpText: "The full ID of the post to crosspost (e.g. t3_123456).",
+                },
+                {
+                    type: "string",
+                    name: "crosspostTarget",
+                    label: "Subreddit Name",
+                    helpText: "This is where you want to crosspost to go to, do not include the r/ prefix.",
+                },
+            ],
+        },
     ],
     title: "Create Test Post Form",
     description: "This is a form for creating a test post.",
@@ -167,9 +187,13 @@ export type TestPostFormSubmitData = {
     kind?: [MediaPostKind];
     videoPosterUrl?: string;
     imageUrls?: string;
+
+    // Crosspost Option
+    crosspostFullname?: string;
+    crosspostTarget?: string;
 }
 
-export async function postWithToast (context: Context, postOptions: SubmitPostOptions) {
+export async function postWithToast (context: Context, postOptions: RawSubmitPostOptions) {
     try {
         const postId = await rawSubmit(postOptions, context.debug.metadata);
         const post = await context.reddit.getPostById(postId);
@@ -259,6 +283,22 @@ const formHandler: FormOnSubmitEventHandler<TestPostFormSubmitData> = async (eve
             videoPosterUrl,
             ...commonPostData,
         } as SubmitPostOptions);
+    }
+
+    if (postType === "crosspost") {
+        const crosspostFullname = event.values.crosspostFullname?.trim();
+        if (!crosspostFullname || !isLinkId(crosspostFullname)) {
+            context.ui.showToast({text: "ERROR: You must provide a crosspost ID, remeber to include the t3_ prefix!", appearance: "neutral"});
+            return;
+        }
+
+        await postWithToast(context, {
+            ...commonPostData,
+            kind: "crosspost",
+            text: "",
+            crosspostFullname,
+            subredditName: event.values.crosspostTarget?.trim() ?? subredditName,
+        });
     }
 };
 

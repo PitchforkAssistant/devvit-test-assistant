@@ -121,16 +121,13 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
                 type: "paragraph",
                 name: "additionalData",
                 label: "Additional Data",
-                // helpText: "This field contains the results from an attempt to fetch additional data that isn't included in the default Devvit object.",
-                defaultValue: JSON.stringify(additionalData, null, 3), // Just Object.keys() doesn't return class methods
+                helpText: "This field contains the results from an attempt to fetch additional data that isn't included in the default Devvit object.",
+                defaultValue: JSON.stringify(additionalData, null, 3),
                 lineHeight: 10,
                 disabled: true,
             },
         ],
     });
-
-    console.dir(result);
-    console.trace(result);
 };
 
 export const fetchThingForm: FormKey = Devvit.createForm(form, formHandler);

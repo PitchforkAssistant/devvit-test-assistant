@@ -1,0 +1,93 @@
+diff --git a/node_modules/@devvit/public-api/apis/reddit/helpers/textFallbackToRichtext.d.ts b/node_modules/@devvit/public-api/apis/reddit/helpers/textFallbackToRichtext.d.ts
+index 69747fd..436b01f 100644
+--- a/node_modules/@devvit/public-api/apis/reddit/helpers/textFallbackToRichtext.d.ts
++++ b/node_modules/@devvit/public-api/apis/reddit/helpers/textFallbackToRichtext.d.ts
+@@ -1,2 +1,6 @@
+-export {};
++import type {RichTextBuilder} from '@devvit/shared-types';
++export const getCustomPostRichTextFallback: (textFallbackOptions: {
++    text?: string;
++    richtext?: RichTextBuilder | object | string;
++}) => string;
+ //# sourceMappingURL=textFallbackToRichtext.d.ts.map
+diff --git a/node_modules/@devvit/public-api/devvit/internals/blocks/BlocksReconciler.d.ts b/node_modules/@devvit/public-api/devvit/internals/blocks/BlocksReconciler.d.ts
+index 054454c..ad859d0 100644
+--- a/node_modules/@devvit/public-api/devvit/internals/blocks/BlocksReconciler.d.ts
++++ b/node_modules/@devvit/public-api/devvit/internals/blocks/BlocksReconciler.d.ts
+@@ -1,3 +1,4 @@
++import type { Effect, Block } from '@devvit/protos';
+ export type ReifiedBlockElement = {
+     type: string;
+     props: {
+@@ -7,4 +8,71 @@ export type ReifiedBlockElement = {
+ };
+ export type ReifiedBlockElementOrLiteral = ReifiedBlockElement | string;
+ export declare function assertNotString(reified: ReifiedBlockElementOrLiteral): asserts reified is ReifiedBlockElement;
++export declare class BlocksReconciler {
++    // Properties
++    renderState: Record<string, any>;
++    currentComponentKey: string[];
++    currentHookIndex: number;
++    actions: Map<string, Function>;
++    forms: Map<string, any>;
++    realtimeChannels: string[];
++    realtimeUpdated: boolean;
++    pendingHooks: Array<() => Promise<void>>;
++    isRendering: boolean;
++    transformer: BlocksTransformer;
++    effects: Effect[];
++    component: any;
++    event: any;
++    state: Record<string, any>;
++    metadata: any;
++    dimensions: any;
++    cache: any;
++    modLog: any;
++    reddit: any;
++    kvStore: any;
++    redis: any;
++    settings: any;
++    scheduler: any;
++    media: any;
++    assets: any;
++    realtime: any;
++    ui: any;
++    hooks: {
++        useState: any;
++        useInterval: any;
++        useForm: any;
++        useChannel: any;
++    };
++
++    // Constructor
++    constructor(component: any, event: any, state: any, metadata: any, dimensions: any);
++
++    // Methods
++    emitEffect(_dedupeKey: string, effect: Effect): void;
++    render(): Promise<Block>;
++    makeUniqueActionID(id: string): string;
++    reconcile(): Promise<void>;
++    buildBlocksUI(): Promise<Block>;
++    renderElement(ctx: any, element: any): Promise<any>;
++    processProps(block: any): Promise<void>;
++    processBlock(element: any, idGenerator?: Function, path?: string[]): Promise<ReifiedBlockElementOrLiteral>;
++    getCurrentComponentKey(): string[];
++    getCurrentComponentState(): any;
++    getPreviousComponentState(): any;
++    runHook(hook: () => Promise<void>): void;
++    rerenderIn(delayMs: number): void;
++    addRealtimeChannel(channel: string): void;
++    removeRealtimeChannel(channel: string): void;
++    getEffects(): Effect[];
++    buildNextState(): void;
++
++    // Getters
++    readonly isInitialRender: boolean;
++    readonly isUserActionRender: boolean;
++    readonly isEffectRender: boolean;
++    readonly formSubmittedEvent: any;
++    readonly blockRenderEventId: string | false;
++    readonly realtimeEvent: any;
++    readonly realtimeEffect: Effect[];
++}
+ //# sourceMappingURL=BlocksReconciler.d.ts.map

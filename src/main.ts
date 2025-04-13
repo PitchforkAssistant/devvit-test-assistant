@@ -19,22 +19,27 @@ export {devvitAppSettings} from "./settings.js";
 // Forms
 export {createPostForm} from "./forms/createPostForm.js";
 export {createWikiForm} from "./forms/createWikiForm.js";
+export {evilForm} from "./forms/evilForm.js";
 export {fetchDomainForm} from "./forms/fetchDomainForm.js";
 export {fetchThingForm} from "./forms/fetchThingForm.js";
 export {fetchWikiForm} from "./forms/fetchWikiForm.js";
 export {resultForm} from "./forms/resultForm.js";
+export {testPostForm} from "./forms/testPostForm.js";
 export {uploadImageForm} from "./forms/uploadImageForm.js";
 
 // Buttons
+export {checkDebugButton} from "./buttons/checkDebugButton.js";
 export {checkLocaleButton} from "./buttons/checkLocaleButton.js";
 export {createWikiButton} from "./buttons/createWikiButton.js";
 export {customPostButton} from "./buttons/customPostButton.js";
+export {evilButton} from "./buttons/evilButton.js";
 export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
 export {fetchThingButton} from "./buttons/fetchThingButton.js";
 export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
 export {generalButton} from "./buttons/generalButton.js";
 export {loggedOutButton} from "./buttons/loggedOutButton.js";
 export {modButton} from "./buttons/modButton.js";
+export {testPostButton} from "./buttons/testPostButton.js";
 export {uploadImageButton} from "./buttons/uploadImageButton.js";
 
 // Custom Post

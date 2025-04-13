@@ -8,6 +8,7 @@ Devvit.configure({
     http: true,
     kvStore: true,
     realtime: true,
+    userActions: true,
 });
 
 // These are exports of Devvit.add... functions contained in other files, which helps with organization.

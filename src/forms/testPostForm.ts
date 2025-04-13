@@ -1,5 +1,7 @@
 import {CommonSubmitPostOptions, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler, SubmitPostOptions} from "@devvit/public-api";
 
+import {rawSubmit} from "../utils/rawSubmit.js";
+
 export type PostType = "text" | "richtext" | "link" | "media";
 export type MediaPostKind = "image" | "video" | "videogif";
 
@@ -17,6 +19,18 @@ const form: Form = {
                 {label: "Media", value: "media"},
             ],
             defaultValue: ["text"],
+        },
+
+        {
+            type: "select",
+            name: "runAs",
+            label: "Run As",
+            helpText: "The post will be submitted with the selected run context.",
+            options: [
+                {label: "App", value: "APP"},
+                {label: "User", value: "USER"},
+            ],
+            defaultValue: ["APP"],
         },
         {
             type: "group",
@@ -132,6 +146,7 @@ const form: Form = {
 
 export type TestPostFormSubmitData = {
     type?: [PostType];
+    runAs?: ["APP" | "USER"];
 
     // General Post Options
     title?: string;
@@ -156,7 +171,8 @@ export type TestPostFormSubmitData = {
 
 export async function postWithToast (context: Context, postOptions: SubmitPostOptions) {
     try {
-        const post = await context.reddit.submitPost(postOptions);
+        const postId = await rawSubmit(postOptions, context.debug.metadata);
+        const post = await context.reddit.getPostById(postId);
         context.ui.navigateTo(post);
         return;
     } catch (error) {
@@ -192,6 +208,7 @@ const formHandler: FormOnSubmitEventHandler<TestPostFormSubmitData> = async (eve
         spoiler: event.values.spoiler,
         flairId: event.values.flairId,
         flairText: event.values.flairText,
+        runAs: event.values.runAs?.[0],
     };
 
     if (postType === "text") {

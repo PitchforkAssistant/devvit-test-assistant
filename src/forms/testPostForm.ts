@@ -196,8 +196,7 @@ export type TestPostFormSubmitData = {
 export async function postWithToast (context: Context, postOptions: RawSubmitPostOptions) {
     try {
         const postId = await rawSubmit(postOptions, context.debug.metadata);
-        const post = await context.reddit.getPostById(postId);
-        context.ui.navigateTo(post);
+        context.ui.navigateTo(`https://reddit.com/r/${postOptions.subredditName}/comments/${postId.substring(3)}`);
         return;
     } catch (error) {
         console.error("Error submitting post:", error);

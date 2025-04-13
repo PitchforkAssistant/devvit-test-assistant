@@ -26,6 +26,7 @@ export type ExtendedDevvit = typeof Devvit & {
     mediaPlugin: protos.MediaService
     settingsPlugin: protos.Settings
     realtimePlugin: protos.Realtime
+    userActionsPlugin: protos.UserActions
 };
 
 export function getExtendedDevvit (): ExtendedDevvit {

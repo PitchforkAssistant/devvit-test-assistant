@@ -1,5 +1,5 @@
 import {CommonSubmitPostOptions, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler, SubmitPostOptions} from "@devvit/public-api";
-import {isLinkId} from "@devvit/shared-types/tid.js";
+import {isLinkId} from "@devvit/public-api/types/tid.js";
 
 import {rawSubmit, RawSubmitPostOptions} from "../utils/rawSubmit.js";
 
@@ -195,7 +195,7 @@ export type TestPostFormSubmitData = {
 
 export async function postWithToast (context: Context, postOptions: RawSubmitPostOptions) {
     try {
-        const postId = await rawSubmit(postOptions, context.debug.metadata);
+        const postId = await rawSubmit(postOptions, context.metadata);
         context.ui.navigateTo(`https://reddit.com/r/${postOptions.subredditName}/comments/${postId.substring(3)}`);
         return;
     } catch (error) {
@@ -296,6 +296,7 @@ const formHandler: FormOnSubmitEventHandler<TestPostFormSubmitData> = async (eve
             kind: "crosspost",
             text: "",
             crosspostFullname,
+            runAs: event.values.runAs?.[0],
             subredditName: event.values.crosspostTarget?.trim() ?? subredditName,
         });
     }

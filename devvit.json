@@ -1,0 +1,45 @@
+{
+    "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+    "name": "testassistant",
+    "blocks": {
+        "entry": "src/main.ts",
+        "triggers": [
+            "onPostCreate",
+            "onAppInstall",
+            "onAppUpgrade",
+            "onAutomoderatorFilterComment",
+            "onAutomoderatorFilterPost",
+            "onCommentCreate",
+            "onCommentDelete",
+            "onCommentReport",
+            "onPostDelete",
+            "onPostReport",
+            "onCommentSubmit",
+            "onCommentUpdate",
+            "onPostSubmit",
+            "onPostUpdate",
+            "onModAction",
+            "onModMail",
+            "onPostFlairUpdate",
+            "onPostNsfwUpdate",
+            "onPostSpoilerUpdate"
+        ]
+    },
+    "media": {
+        "dir": "assets/"
+    },
+    "permissions": {
+        "media": true,
+        "payments": true,
+        "realtime": true,
+        "reddit": {
+            "asUser": [
+                "SUBMIT_COMMENT",
+                "SUBMIT_POST",
+                "SUBSCRIBE_TO_SUBREDDIT"
+            ],
+            "enable": true
+        },
+        "redis": true
+    }
+}

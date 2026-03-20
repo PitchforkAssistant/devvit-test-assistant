@@ -20,13 +20,17 @@ export {devvitAppSettings} from "./settings.js";
 // Forms
 export {createPostForm} from "./forms/createPostForm.js";
 export {createWikiForm} from "./forms/createWikiForm.js";
+export {editUserTextForm} from "./forms/editUserTextForm.js";
 export {editWikiForm} from "./forms/editWikiForm.js";
 export {evilForm} from "./forms/evilForm.js";
 export {fetchDomainForm} from "./forms/fetchDomainForm.js";
 export {fetchThingForm} from "./forms/fetchThingForm.js";
 export {fetchWikiForm} from "./forms/fetchWikiForm.js";
+export {getSubredditKarmaForm} from "./forms/getSubredditKarmaForm.js";
+export {getUserNotesForm} from "./forms/getUserNotesForm.js";
 export {graphQlForm} from "./forms/graphQlForm.js";
 export {resultForm} from "./forms/resultForm.js";
+export {setFlairForm} from "./forms/setFlairForm.js";
 export {testPostForm} from "./forms/testPostForm.js";
 export {uploadImageForm} from "./forms/uploadImageForm.js";
 
@@ -35,15 +39,20 @@ export {checkDebugButton} from "./buttons/checkDebugButton.js";
 export {checkLocaleButton} from "./buttons/checkLocaleButton.js";
 export {createWikiButton} from "./buttons/createWikiButton.js";
 export {customPostButton} from "./buttons/customPostButton.js";
+export {editUserTextButton} from "./buttons/editUserTextButton.js";
 export {editWikiButton} from "./buttons/editWikiButton.js";
 export {evilButton} from "./buttons/evilButton.js";
 export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
 export {fetchThingButton} from "./buttons/fetchThingButton.js";
 export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
 export {generalButton} from "./buttons/generalButton.js";
+export {getSubredditKarmaButton} from "./buttons/getSubredditKarmaButton.js";
+export {getUserNotesButton} from "./buttons/getUserNotesButton.js";
 export {graphQlButton} from "./buttons/graphQlButton.js";
 export {loggedOutButton} from "./buttons/loggedOutButton.js";
 export {modButton} from "./buttons/modButton.js";
+export {removalReasonMessageButton} from "./buttons/removalReasonsButton.js";
+export {setFlairButton} from "./buttons/setFlairButton.js";
 export {testPostButton} from "./buttons/testPostButton.js";
 export {uploadImageButton} from "./buttons/uploadImageButton.js";
 

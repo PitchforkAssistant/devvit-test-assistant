@@ -3,6 +3,32 @@ import {Comment, Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmit
 import {resultForm} from "../main.js";
 import {getRawCommentData, getRawPostData, getRawSubredditData, getRawUserData} from "../utils/rawData.js";
 
+function stringifyJSON (t: unknown): undefined | string {
+    if (t === undefined) {
+        return undefined;
+    } else if (t === null) {
+        return "null";
+    } else if (typeof t === "bigint") {
+        throw TypeError("stringifyJSON cannot serialize BigInt");
+    } else if (typeof t === "number") {
+        return String(t);
+    } else if (typeof t === "boolean") {
+        return t ? "true" : "false";
+    } else if (typeof t === "string") {
+        return `"${t.replace(/"/g, '\\"')}"`;
+    } else if (typeof t === "object") {
+        return Array.isArray(t)
+            ? `[${Array.from(t, v => stringifyJSON(v) ?? "null").join(",")}]`
+            : `{${Object.entries(t)
+                .map(([k, v]) => [stringifyJSON(k), stringifyJSON(v)])
+                .filter(([, v]) => v !== undefined)
+                .map(entry => entry.join(":"))
+                .join(",")}}`;
+    } else {
+        return undefined;
+    }
+}
+
 const form: Form = {
     fields: [
         {
@@ -94,7 +120,7 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
     } else {
         // Deleting the toJSON method to ensure all properties are displayed, not just the ones returned by toJSON.
         Object.defineProperties(result, {toJSON: {value: undefined}});
-        resultString = JSON.stringify(result, Object.keys(result), 4);
+        resultString = stringifyJSON(result) ?? "undefined";
     }
 
     context.ui.showForm(resultForm, {

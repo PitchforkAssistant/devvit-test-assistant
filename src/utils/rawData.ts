@@ -19,7 +19,6 @@ export type RedditAPIPlugins = {
 
 export type ExtendedDevvit = typeof Devvit & {
     redditAPIPlugins: RedditAPIPlugins
-    modLogPlugin: protos.Modlog
     schedulerPlugin: protos.Scheduler
     kvStorePlugin: protos.KVStore
     redisPlugin: protos.RedisAPI
@@ -27,6 +26,8 @@ export type ExtendedDevvit = typeof Devvit & {
     settingsPlugin: protos.Settings
     realtimePlugin: protos.Realtime
     userActionsPlugin: protos.UserActions
+    scopes: protos.Scope[]
+    use: <T>(plugin: protos.Definition) => T;
 };
 
 export function getExtendedDevvit (): ExtendedDevvit {

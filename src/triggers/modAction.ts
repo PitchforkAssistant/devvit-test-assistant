@@ -9,6 +9,7 @@ import {onAnyTriggerConsoleLog} from "devvit-helpers";
  */
 
 export async function onModAction (event: ModAction, context: TriggerContext) {
+    console.log(JSON.stringify(await context.reddit.getModerationLog({subredditName: context.subredditName ?? "", limit: 2, pageSize: 2}).all()));
     return onAnyTriggerConsoleLog(event, context);
 }
 

@@ -1,7 +1,6 @@
 import {Context, Devvit, Form, FormKey, FormOnSubmitEvent, FormOnSubmitEventHandler} from "@devvit/public-api";
 
 import {resultForm} from "../main.js";
-import {getWikiPath} from "../utils/wikiPath.js";
 
 const form: Form = {
     fields: [
@@ -28,14 +27,15 @@ const formHandler: FormOnSubmitEventHandler<FetchWikiFormSubmitData> = async (ev
         return;
     }
 
-    const wikiPath = getWikiPath(wikiPathInput);
+    const wikiPath = wikiPathInput;
     if (!wikiPath) {
         context.ui.showToast({text: `ERROR: Invalid wiki path provided. ${wikiPathInput} is not a valid wiki path. Wiki paths must be lowercase and may only contain letters, numbers, underscores, hyphens, and slashes. They must not start or end with a slash, and must not start with "wiki/".`, appearance: "neutral"});
         return;
     }
 
     try {
-        const fetchedWikiPage = await context.reddit.getWikiPage(context.subredditName ?? "", wikiPath.path);
+        const fetchedWikiPage = await context.reddit.getWikiPage(context.subredditName ?? "", wikiPath);
+
         context.ui.showToast({text: `Successfully fetched wiki page at ${fetchedWikiPage.name}`, appearance: "success"});
         console.log(fetchedWikiPage);
         context.ui.showForm(resultForm, {
@@ -50,14 +50,14 @@ const formHandler: FormOnSubmitEventHandler<FetchWikiFormSubmitData> = async (ev
             ],
         });
     } catch (error) {
-        context.ui.showToast({text: `ERROR: Failed to get wiki page at ${wikiPath.path}.`, appearance: "neutral"});
+        context.ui.showToast({text: `ERROR: Failed to get wiki page at ${wikiPath}.`, appearance: "neutral"});
         console.error(error);
         context.ui.showForm(resultForm, {
             fields: [
                 {
                     type: "paragraph",
                     name: "wikiPage",
-                    label: wikiPath.path,
+                    label: wikiPath,
                     defaultValue: String(error),
                     helpText: "Error resulting from getWikiPage.",
                     disabled: true,

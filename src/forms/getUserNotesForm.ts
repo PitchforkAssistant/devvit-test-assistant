@@ -40,7 +40,7 @@ const formHandler: FormOnSubmitEventHandler<GetUserNotesFormSubmitData> = async 
         fields: [
             {
                 type: "paragraph",
-                name: "thing",
+                name: "Public",
                 label: "Public Client Notes",
                 defaultValue: JSON.stringify(publicNotes, null, 3),
                 lineHeight: 10,
@@ -48,7 +48,7 @@ const formHandler: FormOnSubmitEventHandler<GetUserNotesFormSubmitData> = async 
             },
             {
                 type: "paragraph",
-                name: "thing",
+                name: "Protos",
                 label: "Protos Notes",
                 defaultValue: JSON.stringify(protosNotes, null, 3),
                 lineHeight: 10,

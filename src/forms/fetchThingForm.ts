@@ -84,7 +84,7 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
 
     let result: Comment | User | Post | SubredditInfo | undefined = undefined;
     let additionalData: unknown = undefined;
-    let resultString = "";
+    let resultString: string | undefined = undefined;
     try {
         switch (thingType) {
         case "t1":
@@ -115,12 +115,14 @@ const formHandler: FormOnSubmitEventHandler<FetchThingFormSubmitData> = async (e
     } catch (e) {
         resultString = `ERROR: ${String(e)}`;
     }
-    if (!result) {
-        resultString = "undefined";
-    } else {
-        // Deleting the toJSON method to ensure all properties are displayed, not just the ones returned by toJSON.
-        Object.defineProperties(result, {toJSON: {value: undefined}});
-        resultString = stringifyJSON(result) ?? "undefined";
+    if (resultString === undefined) {
+        if (!result) {
+            resultString = "undefined";
+        } else {
+            // Deleting the toJSON method to ensure all properties are displayed, not just the ones returned by toJSON.
+            Object.defineProperties(result, {toJSON: {value: undefined}});
+            resultString = stringifyJSON(result) ?? "undefined";
+        }
     }
 
     context.ui.showForm(resultForm, {

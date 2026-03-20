@@ -41,5 +41,11 @@
             "enable": true
         },
         "redis": true
+    },
+    "marketingAssets": {
+        "icon": "assets/asset.png"
+    },
+    "dev": {
+        "subreddit": "PitchforkAssistant"
     }
 }

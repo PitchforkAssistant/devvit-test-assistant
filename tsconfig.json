@@ -4,7 +4,8 @@
         "resolveJsonModule": true,
         "jsx": "react",
         "module": "NodeNext",
-        "moduleResolution": "NodeNext"
+        "moduleResolution": "NodeNext",
+        "target": "esnext",
     },
     "exclude": ["**/node_modules", "dist", "**/.*/", "eslint.config.mjs"]
 }

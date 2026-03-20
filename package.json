@@ -13,23 +13,24 @@
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
-    "@devvit/protos": "0.12.1",
-    "@devvit/public-api": "0.12.1",
-    "@devvit/shared-types": "0.12.1",
+    "@devvit/protos": "^0.12.16-next-2026-03-19-22-12-19-fb3ac1228.0",
+    "@devvit/public-api": "^0.12.16-next-2026-03-19-22-12-19-fb3ac1228.0",
+    "@devvit/shared-types": "^0.12.16-next-2026-03-19-22-12-19-fb3ac1228.0",
     "base64-js": "^1.5.1",
-    "devvit-helpers": "0.7.12",
-    "lodash": "^4.17.21",
-    "toolbox-devvit": "0.3.2"
+    "devvit-helpers": "^0.8.6",
+    "lodash-es": "^4.17.23",
+    "toolbox-devvit": "0.4.0"
   },
   "devDependencies": {
-    "@types/lodash": "^4.17.20",
-    "@typescript-eslint/eslint-plugin": "^8.39.1",
-    "@typescript-eslint/parser": "^8.39.1",
-    "eslint": "^9.33.0",
-    "eslint-plugin-perfectionist": "^4.15.0",
-    "eslint-plugin-vitest": "^0.5.4",
+    "@eslint/js": "^10.0.1",
+    "@types/lodash-es": "^4.17.12",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vitest/eslint-plugin": "^1.6.9",
+    "eslint": "^10.0.2",
+    "eslint-plugin-perfectionist": "^5.6.0",
     "patch-package": "^8.0.0",
-    "typescript": "^5.9.2",
-    "vitest": "^3.2.4"
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.56.1",
+    "vitest": "^4.0.18"
   }
 }

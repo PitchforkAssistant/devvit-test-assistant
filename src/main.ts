@@ -18,6 +18,7 @@ Devvit.configure({
 export {devvitAppSettings} from "./settings.js";
 
 // Forms
+export {aboutWhereForm} from "./forms/aboutWhereForm.js";
 export {createPostForm} from "./forms/createPostForm.js";
 export {createWikiForm} from "./forms/createWikiForm.js";
 export {editUserTextForm} from "./forms/editUserTextForm.js";
@@ -26,6 +27,7 @@ export {evilForm} from "./forms/evilForm.js";
 export {fetchDomainForm} from "./forms/fetchDomainForm.js";
 export {fetchThingForm} from "./forms/fetchThingForm.js";
 export {fetchWikiForm} from "./forms/fetchWikiForm.js";
+export {filterForm} from "./forms/filterForm.js";
 export {getSubredditKarmaForm} from "./forms/getSubredditKarmaForm.js";
 export {getUserNotesForm} from "./forms/getUserNotesForm.js";
 export {graphQlForm} from "./forms/graphQlForm.js";
@@ -35,6 +37,7 @@ export {testPostForm} from "./forms/testPostForm.js";
 export {uploadImageForm} from "./forms/uploadImageForm.js";
 
 // Buttons
+export {aboutWhereButton} from "./buttons/aboutWhereButton.js";
 export {checkDebugButton} from "./buttons/checkDebugButton.js";
 export {checkLocaleButton} from "./buttons/checkLocaleButton.js";
 export {createWikiButton} from "./buttons/createWikiButton.js";
@@ -45,7 +48,9 @@ export {evilButton} from "./buttons/evilButton.js";
 export {fetchDomainButton} from "./buttons/fetchDomainButton.js";
 export {fetchThingButton} from "./buttons/fetchThingButton.js";
 export {fetchWikiButton} from "./buttons/fetchWikiButton.js";
+export {filterButton} from "./buttons/filterButton.js";
 export {generalButton} from "./buttons/generalButton.js";
+export {getLogButton} from "./buttons/getLogButton.js";
 export {getSubredditKarmaButton} from "./buttons/getSubredditKarmaButton.js";
 export {getUserNotesButton} from "./buttons/getUserNotesButton.js";
 export {graphQlButton} from "./buttons/graphQlButton.js";
